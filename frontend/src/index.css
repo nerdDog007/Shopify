@@ -13,3 +13,32 @@ body{
   background-color: #f5f5f5;
 }
 
+.hamburger{
+  content: "";
+  width: 25px;
+  height: 2px;
+  background-color: black;
+  position: relative;
+}
+
+.hamburger:before{
+  content: "";
+  width: 25px;
+  height: 2px;
+  position: absolute;
+  top: 09px;
+  left: 0;
+  background-color: black;
+}
+
+.hamburger:after{
+  content: "";
+  width: 25px;
+  height: 2px;
+  position: absolute;
+  bottom: 09px;
+  left: 0;
+  background-color: black;
+  
+}
+
