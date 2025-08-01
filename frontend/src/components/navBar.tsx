@@ -1,15 +1,25 @@
-import React from 'react'
 import { CiShoppingCart } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
-import { IoIosArrowDropdown } from "react-icons/io";
-
+import { VscAccount } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
 function NavBar() {
+    const navigate = useNavigate();
   return (
-    <nav className='w-screen flex p-4 gap-8 fixed bg-white items-center justify-between  text-xl'>
-        <h1 className=' font-bold'>Khatri</h1>
+    <nav className='w-screen h-[10vh] flex px-1   shadow-2xl top-[7vh] z-10 bg-white items-center justify-between  text-xl'>
+        <h1 className=' font-bold text-[1rem]'>Sandesh.KC</h1>
+        <div className="hidden md:block">
+            <ul className="flex gap-8 lg:gap-8 sm:text-[.8rem] md:text-[.8rem] lg:text-xl">
+                <NavbarItem text="Shop"/>
+                <NavbarItem text="Sample"/>
+                <NavbarItem text="Sets"/>
+                <NavbarItem text="Fragnance Finder"/>
+                <NavbarItem text="Perfume Guide" />
+            </ul>
+        </div>
             <ul className='flex items-center justify-center gap-2 border-x-2 p-4 border-black'>
-                <li className=' border-black text-xl'>
-                    <select name="name" id="" className=''>
+                <li className=' border-black '>
+                    <select name="name" id="" className='text-[1rem]'>
+                        <option value="">NRS</option>
                         <option value="">AUD</option>
                         <option value="">USD</option>
                         <option value="">INR</option>
@@ -19,16 +29,28 @@ function NavBar() {
                         <option value="">CAD</option>
                     </select>
                 </li>
-                <li className=' p-3 border-black '>
-                    <CiSearch className='w-6 h-6'/>
+                <li className=' border-black '>
+                    <CiSearch className='w-4 h-4'/>
                 </li>
                 <li className='  text-2xl border-black'>
-                    <CiShoppingCart className='w-6 h-6'/>
+                    <VscAccount className='w-4 h-4' onClick={() => {
+                        navigate("/login");
+                    }}/>
+                </li>
+                <li className='  text-2xl border-black'>
+                    <CiShoppingCart className='w-4 h-4'/>
                 </li>
             </ul>
-            <p className="hamburger"></p>
+            <p className="md:hidden hamburger text-[.5rem]"></p>
     </nav>
   )
 }
 
+function NavbarItem({ text }: { text: string }) {
+    return(
+        <li className="border-b-2 cursor-pointer border-black/40 hover:border-red-500 transition-all duration-300">
+            <p>{text}</p>
+        </li>
+    )
+}
 export default NavBar
