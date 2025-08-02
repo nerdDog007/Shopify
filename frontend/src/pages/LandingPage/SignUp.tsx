@@ -42,6 +42,20 @@ function LogIn(){
 function SignUpForm(){
     const dispatch = useDispatch()
     const {name,email,password} = useSelector((state) => state.signUp)
+    const handleClick = async (e) => {
+        e.preventDefault()
+        await fetch("http://localhost:5000/register",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                name,
+                email,
+                password
+            })
+        }).then((res) => res.json()).then((data) => console.log(data))
+    }
     console.log(name,email,password);
     return(
         <form action="" className="w-[90vw] mx-auto h-fit flex flex-col gap-8 items-start justify-center">        
@@ -50,7 +64,7 @@ function SignUpForm(){
                 <input value={name} onChange={(e) => dispatch(setName(e.target.value))} type="text" name="" id="" placeholder="Name" className="px-0 py-2 outline-0 w-full border-b-2 border-black"/>
                 <input value={email} onChange={(e) => dispatch(setEmail(e.target.value))} type="email" name="" id="" placeholder="Email Address" className="px-0 py-2 outline-0 w-full border-b-2 border-black"/>
                 <input value={password} onChange={(e) => dispatch(setPassword(e.target.value))} type="password" name="" id="" placeholder="Password" className="px-0 py-2 outline-0 w-full border-b-2 border-black"/>
-                <button className="btn-bg py-2 text-white bg-[#414042] w-full">Sign Up</button>
+                <button className="btn-bg py-2 text-white bg-[#414042] w-full"onClick={handleClick}>Sign Up</button>
             </div>
             <p className="border-b-2 border-black pb-1" onClick={()=>{
                 dispatch(setLogin(true)) 
